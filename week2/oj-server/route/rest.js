@@ -24,7 +24,7 @@ router.post('/problems', jsonParser, (req, res) => {
 		.then(problem => {
 			res.json(problem);
 		}, error => {
-			res.status(400, "Problem name already exists!");
+			res.status(400).send('Problem name already exists!');
 		});
 });
 

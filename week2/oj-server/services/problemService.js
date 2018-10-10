@@ -45,7 +45,7 @@ let problems = [
 	const addProblem = function(newproblem) {
 		return new Promise((resolve, reject) => {
 			//if problem exist
-			if (problems.find(promblem => problem.name === newproblem.name)) {
+			if (problems.find(problem => problem.name === newproblem.name)) {
 				reject('problem already exists');
 			} else {
 				newproblem.id = problems.length + 1;
