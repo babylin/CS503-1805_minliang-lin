@@ -56,7 +56,7 @@ const getProblem = function(id) {
 			if (err) {
 				reject(err);
 			} else {
-				reso1ve(problem);
+				resolve(problem);
 			}
 		});
 	});
