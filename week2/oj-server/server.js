@@ -2,7 +2,12 @@ const express = require('express');
 
 const app = express();
 
-const restRouter = require('./route/rest');
+//connect to mongodb
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://databaseuser1:databaseuser1@ds129393.mlab.com:29393/cs503-1');
+
+const restRouter = require('./routes/rest');
+const indexRouter = require('./routes/index');
 
 //app.get('/', (req, res) => {
 //	res.send("Hello World from express!");
