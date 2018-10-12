@@ -9,14 +9,16 @@ import {DataService} from '../../services/data.service';
   styleUrls: ['./problem-detail.component.css']
 })
 export class ProblemDetailComponent implements OnInit {
-	problem: Problem
+	problem: Problem;
 
   constructor(private dataService:DataService, private route:ActivatedRoute) { }
 
   ngOnInit() {
   	this.route.params.subscribe(params => {
-  		this.problem = this.dataService.getProblem(+params['id']);
-  	})
+  		// this.problem = this.dataService.getProblem(+params['id']);
+      this.dataService.getProblem(+params['id'])
+        .then(problem => this.problem = problem);
+  	});
   }
 
 }
