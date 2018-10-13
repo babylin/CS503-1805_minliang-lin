@@ -1,5 +1,5 @@
 const express = require('express');
-
+const path = require('path');
 const app = express();
 
 //connect to mongodb
@@ -13,8 +13,14 @@ const indexRouter = require('./routes/index');
 //	res.send("Hello World from express!");
 //});
 
+
 app.use('/api/v1', restRouter);
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.listen(3000, () => {
 	console.log('App is listening port 3000!')
 });
+
+app.use((req, res) => {
+	res.sendFile('index.html', {root: path.join(__dirname, '../public')});
+})
