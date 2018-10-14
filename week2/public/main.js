@@ -279,7 +279,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\" *ngIf=\"problem\">\n\t<div class=\"col-sm-12 col-md-4\">\n\t\t<div>\n\t\t\t<h2>\n\t\t\t\t{{problem.id}}.{{problem.name}}\n\t\t\t</h2>\n\t\t\t<p>\n\t\t\t\t{{problem.desc}}\n\t\t\t</p>\n\t\t</div>\n\t</div>\n</div>\n"
+module.exports = "<div class=\"container\" *ngIf=\"problem\">\n\t<div class=\"col-sm-12 col-md-4\">\n\t\t<div>\n\t\t\t<h2>\n\t\t\t\t{{problem.id}}.{{problem.name}}\n\t\t\t</h2>\n\t\t\t<p>\n\t\t\t\t{{problem.desc}}\n\t\t\t</p>\n\t\t\t<div class=\"hidden-xs col-sm-12 col-md-8\">\n\t\t\t\t<app-editor></app-editor>\n\t\t\t</div>\n\t\t</div>\n\n\t</div>\n</div>\n"
 
 /***/ }),
 
