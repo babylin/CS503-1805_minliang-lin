@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 // });
 
 
-const server = http.creatServer(app);
+const server = http.createServer(app);
 io.attach(server);
 server.listen(3000);
 server.on('listening', () => {

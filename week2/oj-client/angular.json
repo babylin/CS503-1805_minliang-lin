@@ -29,11 +29,11 @@
             "scripts": [
               "./node_modules/jquery/dist/jquery.js",
               "./node_modules/bootstrap/dist/js/bootstrap.js",
-              "./node_modules/ace-builds/src-min-nonconflict/ace.js",
-              "./node_modules/ace-builds/src-min-nonconflict/theme-elipse.js",
-              "./node_modules/ace-builds/src-min-nonconflict/mode-java.js",
-              "./node_modules/ace-builds/src-min-nonconflict/mode-python.js",
-              "../node_modules/socket.io-client/dist/socket.io.js",
+              "./node_modules/ace-builds/src-min-noconflict/ace.js",
+              "./node_modules/ace-builds/src-min-noconflict/theme-eclipse.js",
+              "./node_modules/ace-builds/src-min-noconflict/mode-java.js",
+              "./node_modules/ace-builds/src-min-noconflict/mode-python.js",
+              "./node_modules/socket.io-client/dist/socket.io.js",
               
             ]
           },
