@@ -33,6 +33,7 @@
               "./node_modules/ace-builds/src-min-nonconflict/theme-elipse.js",
               "./node_modules/ace-builds/src-min-nonconflict/mode-java.js",
               "./node_modules/ace-builds/src-min-nonconflict/mode-python.js",
+              "../node_modules/socket.io-client/dist/socket.io.js",
               
             ]
           },
