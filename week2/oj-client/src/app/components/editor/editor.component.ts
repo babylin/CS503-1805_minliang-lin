@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CollaborationService } from '../../services/collaboration.service';
+
 declare var ace: any; 
 
 @Component({
@@ -22,12 +24,13 @@ export class EditorComponent implements OnInit {
 			#write your Python code here.`
 	};
 
-  constructor() { }
+  constructor(private collaboration: CollaborationService) { }
 
   ngOnInit() {
   	this.editor = ace.edit("editor");
   	this.editor.setTheme("ace/theme/eclipse");
   	this.resetEditor();
+    this.collaboration.init();
   }
 
   resetEditor(): void {
