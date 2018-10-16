@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { CollaborationService } from '../../services/collaboration.service';
 
 declare var ace: any; 
@@ -10,6 +11,7 @@ declare var ace: any;
 })
 export class EditorComponent implements OnInit {
 	editor: any;
+  sessionId: string;
 	public languages: string[] = ['Java', 'Python'];
 	language: string = 'Java';
 	defaultContent = {
@@ -24,14 +26,40 @@ export class EditorComponent implements OnInit {
 			#write your Python code here.`
 	};
 
-  constructor(private collaboration: CollaborationService) { }
+  constructor(private collaboration: CollaborationService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.params
+      .subscribe(params => {
+        this.sessionId = params['id'];
+        this.initEditor();
+      });
+
+  }
+
+  initEditor(): void {
   	this.editor = ace.edit("editor");
   	this.editor.setTheme("ace/theme/eclipse");
 //    this.editor.setValue(this.defaultContent['Java']);
   	this.resetEditor();
-    this.collaboration.init();
+    document.getElementsByTagName('textarea')[0].focus();
+
+    //set up collaboration socket
+    this.collaboration.init(this.editor, this.sessionId);
+    this.editor.lastAppliedChange = null;
+
+    //register change callback
+    this.editor.on('change', (e) => {
+      console.log('editor changes: ' + JSON.stringify(e));
+
+      // check if the change is same as last change,
+      // if they are the same, skip this change
+      if (this.editor.lastAppliedChang != e) {
+        this.collaboration.change(JSON.stringify(e));
+      }
+
+    })
   }
 
   resetEditor(): void {
