@@ -20,7 +20,7 @@ module.exports = function(io) {
 		//socket event listeners
 		socket.on('change', delta => {
 			//change1: bah bah change
-			console.log('change' + socketIdToSessionId[socket.id] + ' ' + delta);
+			console.log('change' + socketIdToSessionId[socket.id] + ': ' + delta);
 			let sessionId = socketIdToSessionId[socket.id];
 			if (sessionId in collaborations) {
 				let participants = collaborations[sessionId]['participants'];

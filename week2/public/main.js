@@ -267,7 +267,7 @@ var EditorComponent = /** @class */ (function () {
             console.log('editor changes: ' + JSON.stringify(e));
             // check if the change is same as last change,
             // if they are the same, skip this change
-            if (_this.editor.lastAppliedChang != e) {
+            if (_this.editor.lastAppliedChange != e) {
                 _this.collaboration.change(JSON.stringify(e));
             }
         });

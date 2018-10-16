@@ -55,7 +55,7 @@ export class EditorComponent implements OnInit {
 
       // check if the change is same as last change,
       // if they are the same, skip this change
-      if (this.editor.lastAppliedChang != e) {
+      if (this.editor.lastAppliedChange != e) {
         this.collaboration.change(JSON.stringify(e));
       }
 
