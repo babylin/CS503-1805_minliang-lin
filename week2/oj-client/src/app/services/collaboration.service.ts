@@ -24,6 +24,7 @@ export class CollaborationService {
 
   change(delta: string): void {
   	//emit 'change' event
+  	console.log('send message' + delta);
   	this.collaborationSocket.emit('change', delta);
   }
 
