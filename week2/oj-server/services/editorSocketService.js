@@ -24,7 +24,7 @@ module.exports = function(io) {
 			let sessionId = socketIdToSessionId[socket.id];
 			if (sessionId in collaborations) {
 				let participants = collaborations[sessionId]['participants'];
-				for (let i =0; i< participants; i++) {
+				for (let i =0; i< participants.length; i++) {
 					//only send to other users not include the myself
 					if (socket.id != participants[i]) {
 						io.to(participants[i]).emit('change', delta);

@@ -601,7 +601,8 @@ var CollaborationService = /** @class */ (function () {
     };
     CollaborationService.prototype.change = function (delta) {
         //emit 'change' event
-        this.collaborationSocket.emit("change", delta);
+        console.log('send message' + delta);
+        this.collaborationSocket.emit('change', delta);
     };
     CollaborationService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
