@@ -29,13 +29,14 @@ export class EditorComponent implements OnInit {
   ngOnInit() {
   	this.editor = ace.edit("editor");
   	this.editor.setTheme("ace/theme/eclipse");
+//    this.editor.setValue(this.defaultContent['Java']);
   	this.resetEditor();
     this.collaboration.init();
   }
 
   resetEditor(): void {
   	this.editor.getSession().setMode("ace/mode/" + this.language.toLowerCase());
-  	this.editor.setValue(this.language);
+  	this.editor.setValue(this.defaultContent[this.language]);
   }
 
   setLanguage(language: string): void {

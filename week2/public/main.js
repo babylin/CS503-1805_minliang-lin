@@ -244,12 +244,13 @@ var EditorComponent = /** @class */ (function () {
     EditorComponent.prototype.ngOnInit = function () {
         this.editor = ace.edit("editor");
         this.editor.setTheme("ace/theme/eclipse");
+        //    this.editor.setValue(this.defaultContent['Java']);
         this.resetEditor();
         this.collaboration.init();
     };
     EditorComponent.prototype.resetEditor = function () {
         this.editor.getSession().setMode("ace/mode/" + this.language.toLowerCase());
-        this.editor.setValue(this.language);
+        this.editor.setValue(this.defaultContent[this.language]);
     };
     EditorComponent.prototype.setLanguage = function (language) {
         this.language = language;
