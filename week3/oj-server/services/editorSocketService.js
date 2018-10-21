@@ -21,8 +21,8 @@ module.exports = function(io) {
 		// 	};
 		// }
 
-		if (sessionID in collaborations) {
-			//when conneciton is on, check if sessionID is in collaboration
+		if (sessionId in collaborations) {
+			//when conneciton is on, check if sessionId is in collaboration
 			collaborations[sessionId]['participants'].push(socket.id);
 		} else {
 			//not in collaboration, check redis
