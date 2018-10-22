@@ -14,6 +14,8 @@ export class CollaborationService {
   	// this.collaborationSocket.on('message', (message) => {
   	// 	console.log('message receive from server: ' + message);
   	// });
+
+    //when receive change from the server, apply to local browser session
   	this.collaborationSocket.on('change', (delta: string) => {
   		console.log('collaboration editor changes ' + delta);
   		delta = JSON.parse(delta);
@@ -26,6 +28,14 @@ export class CollaborationService {
   	//emit 'change' event
   	console.log('send message' + delta);
   	this.collaborationSocket.emit('change', delta);
+  }
+
+
+  //restore buffer from redis cache
+  restoreBuffer(): void {
+    //emit "restoreBuffer" event
+    //let sever to handle this event
+    this.collaborationSocket.emit("restoreBuffer");
   }
 
 }
