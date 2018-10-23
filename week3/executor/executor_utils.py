@@ -92,6 +92,7 @@ def build_and_run(code, lang):
 	except ContainerError as e:
 		#fail to build, get the erro message from container
 		result['build'] = str(e.stderr, 'utf-8')
+		result['error'] = result['build']
 		#remove host dir
 		shutil.rmtree(source_file_host_dir)
 		return result
