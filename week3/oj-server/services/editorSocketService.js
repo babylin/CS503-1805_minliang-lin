@@ -80,21 +80,21 @@ module.exports = function(io) {
 			}
 		});
 
-		//socket restoreBuffer event
+		//when receive socket restoreBuffer event from client
 		socket.on('restoreBuffer', () => {
 			//get sessionId means which question you are working on
-			let sessionId = socketIdToSessionId(socket.id);
+			let sessionId = socketIdToSessionId[socket.id];
 			console.log('restore buffer for session: ' + sessionId + ', socket: ' + socket.id);
 
-			if (sssionId in collaborations) {
-				//get the histrory insturctions
-				let insturctions = collaborations[sessionId]['cachedInstructors'];
+			if (sessionId in collaborations) {
+				//get the histrory instructions
+				let instructions = collaborations[sessionId]['cachedInstructors'];
 				//emit change event for every histroy changes
 				//so that participant can get the history changes
-				for (let i =0; i < insturctions.length; i++) {
+				for (let i =0; i < instructions.length; i++) {
 					//instructions[i][0]: change
 					//instructions[i][1]: change value (delta)
-					socket.emit(instructions[i][0], instructions[1][1]);
+					socket.emit(instructions[i][0], instructions[i][1]);
 				}
 
 			} else {
@@ -105,7 +105,7 @@ module.exports = function(io) {
 
 		//disconnet socket and store data to redis
 		socket.on('disconnect', () => {
-			let sessionId =socketIdToSessionId(socket.id);
+			let sessionId =socketIdToSessionId[socket.id];
 			console.log('disconnect session: ' + sessionId + ', soket: ' + socket.id);
 			console.log(collaborations[sessionId]['participants']);
 

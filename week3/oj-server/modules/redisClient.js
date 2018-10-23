@@ -3,7 +3,7 @@ var redis = require('redis');
 var client = redis.createClient();
 
 //we only call set to store data to redis.
-function set(key, vavlue, callback) {
+function set(key, value, callback) {
 	client.set(key, value, (err, res) => {
 		if(err) {
 			console.log(err);
