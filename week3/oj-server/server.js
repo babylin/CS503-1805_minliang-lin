@@ -12,7 +12,10 @@ const app = express();
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://databaseuser1:databaseuser1@ds129393.mlab.com:29393/cs503-1');
 
+//This is to get restful API throgh regular http
 const restRouter = require('./routes/rest');
+
+//This is to run static file/index.html, through regular http
 const indexRouter = require('./routes/index');
 
 //app.get('/', (req, res) => {
@@ -28,6 +31,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 // });
 
 
+//start socket connection, base on the http server
 const server = http.createServer(app);
 io.attach(server);
 server.listen(3000);
