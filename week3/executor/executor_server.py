@@ -1,5 +1,5 @@
 import json
-from flask import flask
+from flask import Flask
 app = Flask(__name__)
 
 from flask import jsonify #for serialization
@@ -23,9 +23,9 @@ def build_and_run():
 	#convert object to json format
 	return jsonify(result)
 
-	if __name__ == '__main__':
-		# load docker image
-		eu.load_image()
-		#start to run our program after 
-		app.run()
+if __name__ == '__main__':
+	# load docker image
+	eu.load_image()
+	#start to run our program after 
+	app.run()
 		
