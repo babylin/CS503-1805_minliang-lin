@@ -243,6 +243,7 @@ var EditorComponent = /** @class */ (function () {
         this.languages = ['Java', 'Python'];
         this.language = 'Java';
         this.output = ''; //for build and run output
+        this.users = '';
         this.defaultContent = {
             'Java': "public class Example{\n\t\t\tpublic static void main(String[] args) {\n\t\t\t\t//Type your java code here\n\t\t\t}\n\t\t}\n\t\t",
             'Python': "class Solution:\n\t\tdef example():\n\t\t\t#write your Python code here."
@@ -266,7 +267,8 @@ var EditorComponent = /** @class */ (function () {
         this.resetEditor();
         document.getElementsByTagName('textarea')[0].focus();
         //set up collaboration socket
-        this.collaboration.init(this.editor, this.sessionId);
+        this.collaboration.init(this.editor, this.sessionId)
+            .subscribe(function (users) { return _this.users = users; });
         this.editor.lastAppliedChange = null;
         //register change callback
         this.editor.on('change', function (e) {
@@ -590,6 +592,7 @@ var ProblemListComponent = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CollaborationService", function() { return CollaborationService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -600,21 +603,29 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var CollaborationService = /** @class */ (function () {
     function CollaborationService() {
+        this._userSource = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
     }
     CollaborationService.prototype.init = function (editor, sessionId) {
+        var _this = this;
         this.collaborationSocket = io(window.location.origin, { query: 'sessionId=' + sessionId });
         // this.collaborationSocket.on('message', (message) => {
         // 	console.log('message receive from server: ' + message);
         // });
         //when receive change from the server, apply to local browser session
         this.collaborationSocket.on('change', function (delta) {
-            console.log('collaboration editor changes ' + delta);
+            console.log('collaboration: editor changes ' + delta);
             delta = JSON.parse(delta);
             editor.lastAppliedChange = delta;
             editor.getSession().getDocument().applyDeltas([delta]);
         });
+        this.collaborationSocket.on('userChange', function (data) {
+            console.log('collaboration user change: ' + data);
+            _this._userSource.next(data.toString());
+        });
+        return this._userSource.asObservable();
     };
     CollaborationService.prototype.change = function (delta) {
         //emit 'change' event

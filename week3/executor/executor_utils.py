@@ -14,8 +14,8 @@ IMAGE_NAME = 'minliang/cs503' #use the image name you created
 client = docker.from_env()
 
 #store code in tmp folder
-TEMP_BUILD_DIR = "%s/tmp" %CURRENT_DIR
-CONTAINER_NAME = "%s:latest" %IMAGE_NAME
+TEMP_BUILD_DIR = "%s/tmp" % CURRENT_DIR
+CONTAINER_NAME = "%s:latest" % IMAGE_NAME
 
 SOURCE_FILE_NAMES = {
 	"java" : "Example.java",
@@ -24,7 +24,7 @@ SOURCE_FILE_NAMES = {
 
 BINARY_NAMES = {
 	"java": "Example",
-	"python": "python.py"
+	"python": "example.py"
 }
 
 BUILD_COMMANDS = {
@@ -40,7 +40,7 @@ EXECUTE_COMMANDS = {
 #load docker image to execute code
 def load_image():
 	try:
-		client.image.get(IMAGE_NAME)
+		client.images.get(IMAGE_NAME)
 		print("image exists locally")
 	except ImageNotFound:
 		#if we dont have local copy of the image, loading from docker hub

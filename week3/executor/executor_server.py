@@ -24,8 +24,11 @@ def build_and_run():
 	return jsonify(result)
 
 if __name__ == '__main__':
+	#import sys
+	#port = int(sys.argv[1])
 	# load docker image
 	eu.load_image()
 	#start to run our program after 
 	app.run()
+	#app.run(port = port)
 		
