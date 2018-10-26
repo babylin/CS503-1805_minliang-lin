@@ -40,13 +40,13 @@ router.post('/problems', jsonParser, (req, res) => {
 });
 
 //jsonParser:middleware, used to parse the body of the POST request
-router.post('build_and_run', jsonParser, (req, res) => {
+router.post('/build_and_run', jsonParser, (req, res) => {
 	const code = req.body.code;
 	const lang = req.body.lang;
 	console.log('lang: ', lang, 'code: ', code);
 
 	//this is the method we registered before, 
-	restClient.method.build_and_run(
+	restClient.methods.build_and_run(
 	{
 		data: {code: code, lang: lang},
 		headers: {'Content-Type': 'application/json'}
