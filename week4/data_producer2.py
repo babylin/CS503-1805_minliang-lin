@@ -6,6 +6,9 @@ import requests
 import schedule
 import time
 
+from kafka import KafkaProducer
+from kafka.errors import KafkaError
+
 logger_format = '%(asctime)s - %(message)s'
 logging.basicConfig(format=logger_format)
 logger = logging.getLogger('data-producer')
@@ -62,20 +65,6 @@ def shutdown_hook(producer):
 			producer.close(10)
 		except Exception as e:
 			logger.warn('Failed to close kafka connection, cased by %s', e.message)
-
-
-
-
-	try:
-		producer.flush(10)
-	except KafkaError as kafka_error:
-		logger.warn('Failed to flush pending messages to kafka, caused by: %s', kafka_error.message)
-	finally:
-		try:
-			producer.close(10)
-		except Exception as e:
-			logger.warn('Failed to close kafka connection, cased by %s', e.message)
-
 
 
 if __name__ == '__main__':
