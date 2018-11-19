@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/minliang/CS503-1805_minliang-lin/week4/cs_503_env"
+VIRTUAL_ENV="/home/minliang/CS503-1805_minliang-lin/week5/cs_503_env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

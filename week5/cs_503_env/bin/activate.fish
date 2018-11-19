@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/minliang/CS503-1805_minliang-lin/week4/cs_503_env"
+set -gx VIRTUAL_ENV "/home/minliang/CS503-1805_minliang-lin/week5/cs_503_env"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

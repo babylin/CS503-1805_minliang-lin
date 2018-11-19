@@ -46,7 +46,7 @@ def fetch_price(symbol, producer, topic_name)
 		payload = {
 			'Symbol':str(symbol),
 			'LastTradePrice': str(price),
-			'timestamp': str(timestamp)
+			'Timestamp': str(timestamp)
 		}
 		logger.debug('Retrieve %s infor %s', symbol, payload)
 		producer.send(topic=topic_name, value=json.dumps(payload).encode('utf-8'))
