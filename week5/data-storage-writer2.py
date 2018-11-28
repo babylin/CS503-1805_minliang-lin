@@ -79,3 +79,4 @@ if __name__ == '__main__':
 	#start consuming kafka and writing to hbase
 	for msg in kafka_consumer:
 		persist_data(msg.value, hbase_connection, data_table)
+		
