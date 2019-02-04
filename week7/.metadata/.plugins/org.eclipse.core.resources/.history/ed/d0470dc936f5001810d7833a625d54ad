@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -o allexport
+
+MYSQL_USERNAME='root'
+MYSQL_PASSWORD='TigerBit!2016'
+
+# HOSTS
+MASTER=18.188.16.37
+SLAVE=(18.223.15.47)
+CANDIDATE=(18.218.99.177)
+
+MONITOR=18.188.16.37
+
+set +o allexport
+
